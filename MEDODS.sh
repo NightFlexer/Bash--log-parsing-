@@ -11,11 +11,11 @@ if [ -z "$SERVER" ];then SERVER=1; fi
 DATE=`date -I | sed "s/[-]/ /g" | awk '{print $3,$2,$1}'`
 `cat list.out | grep "Error" | awk '{print $1}'|sed "s/[-]/ /g" | awk '{print $1,$2,$3}' > $SERVER$FILED`
 `cat list.out | grep "Running" | awk '{print $1}'|sed "s/[-]/ /g" | awk '{print $1,$2,$3}' > $SERVER$RUNNING`
-`touch SERVER_DATA_report.out | sudo chmod 777 SERVER_DATA_report.out`
 (echo -n "Сервисов без ошибок :" && wc -l ./$SERVER$FILED | awk '{print $1}') > $SERVER$REPORT
 (echo -n "Сервисов с ошибками :" && wc -l ./$SERVER$RUNNING | awk '{print $1}') >> $SERVER$REPORT
 (echo -n ps -o user -p $$ | awk '{print $1}') >> $SERVER$REPORT
 echo "Дата: " $DATE >> $SERVER$REPORT
+sudo chmod 777 $SERVER$REPORT
 #---------Оповещение----
 echo "Созданы временные файлы: "
 #---------Архивация----
