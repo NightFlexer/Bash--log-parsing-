@@ -6,8 +6,6 @@ FILED=_DATE_failed.out && RUNNING=_DATE_running.out && REPORT=_DATA_report.out
 SERVER=$1
 if [ -z "$SERVER" ];then SERVER=SERVER; fi
 touch $SERVER$FILED | touch $SERVER$RUNNING | touch $SERVER$REPORT
-
-if [ -z "$SERVER" ];then SERVER=1; fi
 DATE=`date -I | sed "s/[-]/ /g" | awk '{print $3,$2,$1}'`
 `cat list.out | grep "Error" | awk '{print $1}'|sed "s/[-]/ /g" | awk '{print $1,$2,$3}' > $SERVER$FILED`
 `cat list.out | grep "Running" | awk '{print $1}'|sed "s/[-]/ /g" | awk '{print $1,$2,$3}' > $SERVER$RUNNING`
